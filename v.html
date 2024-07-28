@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navy Website - Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #003366; /* Navy blue background */
+            color: #FFFFFF; /* White text */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        #welcome-message {
+            background-color: #002244; /* Darker navy background */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        #welcome-message h1 {
+            margin: 0;
+        }
+        #user-form input {
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        #user-form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00509e; /* Bright navy blue */
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+        #user-form button:hover {
+            background-color: #003d7a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="welcome-message">
+            <h1>Welcome to the Navy Portal</h1>
+            <p id="personalized-message">Please enter your name to receive a personalized welcome message.</p>
+        </div>
+
+        <form id="user-form">
+            <input type="text" id="user-name" placeholder="Enter your name" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('user-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Get the user's name
+            const userName = document.getElementById('user-name').value;
+
+            // Store the name in local storage
+            localStorage.setItem('userName', userName);
+
+            // Display the personalized welcome message
+            displayWelcomeMessage();
+        });
+
+        function displayWelcomeMessage() {
+            // Retrieve the user's name from local storage
+            const userName = localStorage.getItem('userName');
+
+            // If the user's name is found, update the welcome message
+            if (userName) {
+                document.getElementById('personalized-message').innerHTML = `Welcome to our advanced underwater sonar detection system, ${userName}! We're excited to have you on board. This cutting-edge technology enables us to detect and track underwater objects with unparalleled accuracy. Whether you're a researcher, engineer, or simply curious about the ocean's depths, our system provides a unique glimpse into the underwater world. With its user-friendly interface and real-time data visualization, you'll be able to explore the ocean like never before. Dive in and discover the secrets of the deep with us`;
+            }
+        }
+
+        // Display the welcome message when the page loads
+        displayWelcomeMessage();
+        
+    </script>
+</body>
+</html>
